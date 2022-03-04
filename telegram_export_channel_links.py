@@ -5,6 +5,7 @@ __version__ = "0.0.1"
 __desc__ = "Export public channel and group links of telegram account."
 
 import argparse
+import sys
 
 from telethon.sync import TelegramClient
 from telethon.tl.functions.channels import GetFullChannelRequest
@@ -57,7 +58,7 @@ def main():
                 if description:
                     print("=======")
                     print(
-                        description
+                        description.encode(sys.stdout.encoding, errors='replace')
                     )
                     print("=======")
 

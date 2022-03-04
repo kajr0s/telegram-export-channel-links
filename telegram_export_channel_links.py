@@ -7,7 +7,7 @@ __desc__ = "Export public channel and group links of telegram account."
 import argparse
 
 from telethon.sync import TelegramClient
-
+from telethon.tl.functions.channels import GetFullChannelRequest
 
 def main():
     parser = argparse.ArgumentParser(
@@ -46,9 +46,15 @@ def main():
                     print(
                         "https://t.me/", client.get_entity(dialog.id).username, sep=""
                     )
+
+                ch = client.get_entity(dialog.id)
+                ch_full = client(GetFullChannelRequest(channel=ch))
+                description = ch_full.full_chat.about
+                if description:
                     print(
-                        client.get_entity(dialog.id).description
+                        description
                     )
+
             except AttributeError:
                 pass
 

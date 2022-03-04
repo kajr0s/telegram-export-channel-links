@@ -47,7 +47,7 @@ def main():
                         "https://t.me/", client.get_entity(dialog.id).username, sep=""
                     )
                     print(
-                        client.get_entity(dialog.id).description
+                        "*"
                     )
             except AttributeError:
                 pass

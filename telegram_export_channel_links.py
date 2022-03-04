@@ -46,14 +46,20 @@ def main():
                     print(
                         "https://t.me/", client.get_entity(dialog.id).username, sep=""
                     )
+                else:
+                    print(
+                        "only id: ", dialog.id, sep=""
+                    )
 
                 ch = client.get_entity(dialog.id)
                 ch_full = client(GetFullChannelRequest(channel=ch))
                 description = ch_full.full_chat.about
                 if description:
+                    print("=======")
                     print(
                         description
                     )
+                    print("=======")
 
             except AttributeError:
                 pass

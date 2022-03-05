@@ -42,25 +42,32 @@ def main():
     with TelegramClient(__prog__, args.app_id, args.app_hash) as client:
         def write_dialog(dialog):
             try:
-                username = client.get_entity(dialog.id).username
+                print("=======")
+                chat = client.get_entity(dialog.id)
+                channelType = chat.type
+                print(
+                        "type: ", channelType, sep=""
+                    )
+                title = chat.title
+                print(
+                        "title: ", title, sep=""
+                    )
+                username = chat.username
                 if username:
                     print(
-                        "https://t.me/", client.get_entity(dialog.id).username, sep=""
+                        "link: https://t.me/", username, sep=""
                     )
                 else:
                     print(
-                        "only id: ", dialog.id, sep=""
+                        "id: ", hex(dialog.id), sep=""
                     )
 
-                ch = client.get_entity(dialog.id)
-                ch_full = client(GetFullChannelRequest(channel=ch))
-                description = ch_full.full_chat.about
+                fullChat = client(GetFullChannelRequest(channel=chat))
+                description = fullChat.full_chat.about
                 if description:
-                    print("=======")
                     print(
-                        description.encode(sys.stdout.encoding, errors='replace')
+                        description
                     )
-                    print("=======")
 
             except AttributeError:
                 pass

@@ -78,7 +78,7 @@ def main():
                 pass
 
             for dialog in client.iter_dialogs():
-                if dialog.is_group or dialog.is_channel:
+                if dialog.is_group or (dialog.is_channel and not dialog.is_group):
                     write_dialog(dialog)
 
 if __name__ == "__main__":

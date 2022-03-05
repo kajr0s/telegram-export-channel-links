@@ -31,16 +31,6 @@ def main():
         default="344583e45741c457fe1862106095a5eb",
         help="Test credentials are used by default",
     )
-    parser.add_argument(
-        "--no-groups",
-        action="store_true",
-        help="Don't export group links",
-    )
-    parser.add_argument(
-        "--no-channels",
-        action="store_true",
-        help="Don't export channel links",
-    )
     args = parser.parse_args()
 
     with TelegramClient(__prog__, args.app_id, args.app_hash) as client:
@@ -56,10 +46,15 @@ def main():
                     "real_id: ", real_id, sep=""
                 )
 
-                #channelType = chat.type
-                #print(
-                #        "type: ", channelType, sep=""
-                #    )
+                print(
+                        "is group: ", dialog.is_group, sep=""
+                    )
+                print(
+                        "is channel: ", dialog.is_channel, sep=""
+                    )
+                print(
+                        "is private: ", dialog.is_private, sep=""
+                    )
 
                 title = utils.get_display_name(chat)
                 print(
@@ -82,16 +77,9 @@ def main():
             except AttributeError:
                 pass
 
-        if not args.no_groups:
             for dialog in client.iter_dialogs():
                 if dialog.is_group:
                     write_dialog(dialog)
-
-        if not args.no_channels:
-            for dialog in client.iter_dialogs():
-                if dialog.is_channel and not dialog.is_group:
-                    write_dialog(dialog)
-
 
 if __name__ == "__main__":
     main()

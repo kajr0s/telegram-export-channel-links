@@ -46,15 +46,15 @@ def main():
                     "real_id: ", real_id, sep=""
                 )
 
-                #print(
-                #        "is group: ", dialog.is_group, sep=""
-                #    )
-                #print(
-                #        "is channel: ", dialog.is_channel, sep=""
-                #    )
-                #print(
-                #        "is private: ", dialog.is_private, sep=""
-                #    )
+                print(
+                        "is group: ", dialog.is_group, sep=""
+                    )
+                print(
+                        "is channel: ", dialog.is_channel, sep=""
+                    )
+                print(
+                        "is private: ", dialog.is_private, sep=""
+                    )
 
                 title = utils.get_display_name(chat)
                 print(
@@ -77,9 +77,9 @@ def main():
             except AttributeError:
                 pass
 
-            for dialog in client.iter_dialogs():
-                if dialog.is_group or (dialog.is_channel and not dialog.is_group):
-                    write_dialog(dialog)
+        for dialog in client.iter_dialogs():
+            if dialog.is_group or dialog.is_channel:
+                write_dialog(dialog)
 
 if __name__ == "__main__":
     main()

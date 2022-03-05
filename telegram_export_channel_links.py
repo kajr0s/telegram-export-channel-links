@@ -44,14 +44,14 @@ def main():
             try:
                 print("=======")
                 chat = client.get_entity(dialog.id)
-                channelType = chat.type
-                print(
-                        "type: ", channelType, sep=""
-                    )
-                title = chat.title
-                print(
-                        "title: ", title, sep=""
-                    )
+                #channelType = chat.type
+                #print(
+                #        "type: ", channelType, sep=""
+                #    )
+                #title = chat.title
+                #print(
+                #        "title: ", title, sep=""
+                #    )
                 username = chat.username
                 if username:
                     print(
@@ -62,8 +62,8 @@ def main():
                         "id: ", hex(dialog.id), sep=""
                     )
 
-                fullChat = client(GetFullChannelRequest(channel=chat))
-                description = fullChat.full_chat.about
+                chatClient = client(GetFullChannelRequest(channel=chat))
+                description = chatClient.full_chat.about
                 if description:
                     print(
                         description

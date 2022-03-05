@@ -8,7 +8,11 @@ import argparse
 import sys
 
 from telethon.sync import TelegramClient
+from telethon import utils
 from telethon.tl.functions.channels import GetFullChannelRequest
+
+def tohex(val, nbits):
+  return hex((val + (1 << nbits)) % (1 << nbits))
 
 def main():
     parser = argparse.ArgumentParser(
@@ -44,22 +48,28 @@ def main():
             try:
                 print("=======")
                 chat = client.get_entity(dialog.id)
+                real_id, peer_type = utils.resolve_id(dialog.id)
+                print(
+                    "id: ", hex(dialog.id), sep=""
+                )
+                print(
+                    "real_id: ", real_id, sep=""
+                )
+
                 #channelType = chat.type
                 #print(
                 #        "type: ", channelType, sep=""
                 #    )
-                #title = chat.title
-                #print(
-                #        "title: ", title, sep=""
-                #    )
+
+                title = utils.get_display_name(chat)
+                print(
+                        "title: ", title, sep=""
+                    )
+
                 username = chat.username
                 if username:
                     print(
                         "link: https://t.me/", username, sep=""
-                    )
-                else:
-                    print(
-                        "id: ", hex(dialog.id), sep=""
                     )
 
                 chatClient = client(GetFullChannelRequest(channel=chat))

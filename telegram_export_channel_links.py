@@ -46,15 +46,15 @@ def main():
                     "real_id: ", real_id, sep=""
                 )
 
-                print(
-                        "is group: ", dialog.is_group, sep=""
-                    )
-                print(
-                        "is channel: ", dialog.is_channel, sep=""
-                    )
-                print(
-                        "is private: ", dialog.is_private, sep=""
-                    )
+                #print(
+                #        "is group: ", dialog.is_group, sep=""
+                #    )
+                #print(
+                #        "is channel: ", dialog.is_channel, sep=""
+                #    )
+                #print(
+                #        "is private: ", dialog.is_private, sep=""
+                #    )
 
                 title = utils.get_display_name(chat)
                 print(

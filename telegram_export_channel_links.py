@@ -71,7 +71,7 @@ def main():
                 description = chatClient.full_chat.about
                 if description:
                     print(
-                        description.encode("utf-8")
+                        description
                     )
 
             except AttributeError:

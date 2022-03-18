@@ -52,9 +52,9 @@ def main():
                 print(
                         "is channel: ", dialog.is_channel, sep=""
                     )
-                print(
-                        "is private: ", dialog.is_private, sep=""
-                    )
+                #print(
+                #        "is private: ", dialog.is_private, sep=""
+                #    )
 
                 title = utils.get_display_name(chat)
                 print(
